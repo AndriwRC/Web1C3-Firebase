@@ -23,12 +23,12 @@ function App() {
   return (
     <Router>
       <header>
-        <Navbar firebaseUser={firebaseUser} />
+        <Navbar firebaseUser={firebaseUser} auth={auth} />
       </header>
 
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='login' element={<Login />} />
+        <Route path='login' element={<Login auth={auth} db={db} />} />
         <Route path='admin' element={<Admin />} />
       </Routes>
     </Router>

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-function Navbar({ firebaseUser }) {
+function Navbar({ firebaseUser, auth }) {
+
   return (
     <nav className="d-flex justify-content-center navbar navbar-expand-lg shadow mb-5 bg-body-tertiary rounded">
       <div className="container-fluid my-1 mx-3 mx-md-5" style={{ maxWidth: "1440px" }}>
@@ -28,7 +29,7 @@ function Navbar({ firebaseUser }) {
                   <li className="nav-item"><Link to="/admin" className="nav-link">
                     Admin
                   </Link></li>
-                  <li className="nav-item"><Link to="/" className="nav-link">
+                  <li className="nav-item"><Link to="/" className="nav-link" onClick={() => auth.signOut()}>
                     Logout
                   </Link></li>
                 </>
