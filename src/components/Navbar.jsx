@@ -26,9 +26,14 @@ function Navbar({ firebaseUser, auth }) {
             {
               (firebaseUser) ? (
                 <>
-                  <li className="nav-item"><Link to="/admin" className="nav-link">
-                    Admin
-                  </Link></li>
+                  {
+                    (firebaseUser.email === 'admin@mail.com') ? (
+                      <li className="nav-item"><Link to="/admin" className="nav-link">
+                        Admin
+                      </Link></li>
+                    ) : null
+                  }
+
                   <li className="nav-item"><Link to="/" className="nav-link" onClick={() => auth.signOut()}>
                     Logout
                   </Link></li>
