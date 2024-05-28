@@ -5,6 +5,7 @@ import Admin from './components/Admin';
 import Home from './components/Home';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
+import Reservation from './components/Reservation';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='login' element={<Login auth={auth} db={db} />} />
         <Route path='admin' element={<Admin db={db} />} />
+        <Route path='reservation' element={<Reservation db={db} firebaseUser={firebaseUser} />} />
       </Routes>
     </Router>
   )
