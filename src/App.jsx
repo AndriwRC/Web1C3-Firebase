@@ -6,6 +6,8 @@ import Home from './components/Home';
 import Login from './components/Login';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Reservation from './components/Reservation';
+
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(false);
@@ -30,6 +32,7 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='login' element={<Login auth={auth} db={db} />} />
         <Route path='admin' element={<Admin db={db} />} />
+        <Route path='reservation' element={<Reservation db={db} firebaseUser={firebaseUser} />} />
       </Routes>
       <Footer />
     </Router>

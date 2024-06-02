@@ -24,6 +24,10 @@ function Navbar({ firebaseUser, auth }) {
             {
               (firebaseUser) ? (
                 <>
+                  <li className="nav-item"><Link to="/reservation" className="nav-link">
+                    Reservar
+                  </Link></li>
+
                   {
                     (firebaseUser.email === 'admin@mail.com') ? (
                       <li className="nav-item"><Link to="/admin" className="nav-link">

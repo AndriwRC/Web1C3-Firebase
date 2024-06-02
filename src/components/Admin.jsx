@@ -43,13 +43,13 @@ function Admin({ db }) {
 
     if (validateInputs()) {
       try {
-        const newRoomData = { name, description, capacity, available };
+        const newRoomData = { name, description, capacity, available, reservedBy: '' };
 
         const newRoom = await db.collection('rooms').add(newRoomData);
 
         setRooms([
           ...rooms,
-          { id: newRoom.id, ...newRoomData }
+          { id: newRoom.id, ...newRoomData, }
         ]);
 
         resetInputs();
