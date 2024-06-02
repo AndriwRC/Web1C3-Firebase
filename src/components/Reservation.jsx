@@ -66,11 +66,13 @@ function Reservation({ db, firebaseUser }) {
   return (
     <>
       <div className="form-floating w-50">
-        <select className="form-select" onChange={(e) => setFilterOption(e.target.value)} defaultValue="all">
+        <select className="form-select" id="floatingSelect" onChange={(e) => setFilterOption(e.target.value)} defaultValue="all">
           <option value="all">Todas</option>
           <option value="available">Disponibles</option>
           <option value="reserved">Mis Reservas</option>
         </select >
+        <label htmlFor="floatingSelect">Filtrar Salas</label>
+
       </div>
       <div className="d-flex justify-content-center flex-wrap my-5 px-xl-5" id="cardsContainer" style={{ maxWidth: "1200px" }}>
         {
