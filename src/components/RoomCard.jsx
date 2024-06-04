@@ -1,4 +1,7 @@
 function RoomCard({ room, userEmail, makeReservation, cancelReservation }) {
+  const canCancelReservation = room.reservedBy
+    && (room.reservedBy === userEmail || userEmail === 'admin@mail.com');
+
   return (
     <div
       className={room.available ? "card m-2 shadow" : "card my-2 m-sm-2"}
@@ -15,17 +18,13 @@ function RoomCard({ room, userEmail, makeReservation, cancelReservation }) {
           {
             (room.available)
               ? <button type="button" className="btn btn-warning mt-2" onClick={() => makeReservation(room)}>Reservar</button>
-              : <button type="button" className="btn btn-warning mt-2" disabled>Reservar</button>
-          }
-          {
-            room.reservedBy
-            && (room.reservedBy === userEmail
-              || userEmail === 'admin@mail.com'
-            ) && <button
-              type="button"
-              className="btn btn-dark mt-2"
-              onClick={() => cancelReservation(room)}
-            >Finalizar Reserva</button>
+              : (canCancelReservation)
+                ? <button
+                  type="button"
+                  className="btn btn-dark mt-2"
+                  onClick={() => cancelReservation(room)}
+                >Finalizar Reserva</button>
+                : <button type="button" className="btn btn-warning mt-2" disabled>Reservar</button>
           }
         </div>
       </div>
