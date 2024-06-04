@@ -18,7 +18,7 @@ function Navbar({ firebaseUser, auth }) {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link to="/" className="nav-link">
-                Home
+                Inicio
               </Link>
             </li>
             {
@@ -37,12 +37,12 @@ function Navbar({ firebaseUser, auth }) {
                   }
 
                   <li className="nav-item"><Link to="/" className="btn btn-outline-warning" onClick={() => auth.signOut()}>
-                    Logout
+                    Cerrar Sesión
                   </Link></li>
                 </>
               ) : (
                 <li className="nav-item"><Link to="/login" className="nav-link">
-                  Login
+                  Iniciar Sesión
                 </Link></li>
               )
             }

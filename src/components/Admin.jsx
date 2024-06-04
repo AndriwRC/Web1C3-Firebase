@@ -123,18 +123,16 @@ function Admin({ db }) {
   }, [])
 
   return (
-    <>
-      <form className="row mt-3 mb-5 g-3" onSubmit={isUpdateMode ? update : create}>
+    <main className="container col-lg-8 min-vh-100">
+      <form className="row mt-3 mb-5 pb-5 g-3" onSubmit={isUpdateMode ? update : create}>
         {
           error && (<div className='alert alert-danger'>{error}</div>)
         }
-        <label className="text-danger text-opacity-75 fw-bold">Room Information</label>
+        <label className="text-warning text-opacity-75 fw-bold">Room Information</label>
         <div className="col-md-6">
           <div className="input-group">
             <span className="input-group-text">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
-              </svg>
+              <svg fill="currentColor" height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" xmlSpace="preserve"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M256,0C114.842,0,0,114.842,0,256s114.842,256,256,256s256-114.842,256-256S397.158,0,256,0z M243.2,485.752 c-65.843-3.627-124.339-34.645-164.036-82.15c39.671-47.778,98.005-79.155,164.036-82.816V485.752z M243.2,295.177 c-71.62,3.601-135.305,36.651-179.593,87.433c-21.751-32.99-35.055-71.91-37.359-113.809H243.2V295.177z M243.2,243.2H26.249 c2.313-41.899,15.607-80.819,37.359-113.809c44.288,50.782,107.972,83.831,179.593,87.433V243.2z M243.2,191.206 c-66.031-3.661-124.425-34.961-164.105-82.731c39.697-47.548,98.227-78.601,164.105-82.227V191.206z M268.8,26.249 c65.852,3.627,124.365,34.654,164.062,82.176c-39.671,47.778-98.039,79.121-164.062,82.782V26.249z M268.8,216.815 c71.612-3.593,135.347-36.591,179.635-87.364c21.726,32.973,35.012,71.876,37.325,113.749H268.8V216.815z M268.8,485.751V320.777 c66.022,3.669,124.331,35.081,164.002,82.859C393.105,451.123,334.626,482.125,268.8,485.751z M448.358,382.66 c-44.288-50.782-107.93-83.9-179.558-87.492V268.8h216.951C483.439,310.716,470.135,349.662,448.358,382.66z"></path> </g> </g> </g></svg>
             </span>
             <input type="text"
               placeholder="Ingresa el nombre de la sala"
@@ -146,23 +144,6 @@ function Admin({ db }) {
         </div>
 
         <div className="col-md-6">
-          <div className="input-group">
-            <span className="input-group-text">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-person-fill" viewBox="0 0 16 16">
-                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"></path>
-              </svg>
-            </span>
-            <input type="text"
-              placeholder="Ingresa la descripción de la sala"
-              className='form-control'
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-          </div>
-
-        </div>
-
-        <div>
           <div className="input-group">
             <span className="input-group-text">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-book" viewBox="0 0 16 16">
@@ -178,20 +159,37 @@ function Admin({ db }) {
           </div>
         </div>
 
-        <div className="form-check form-switch">
-          <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked={available} onChange={(e) => setAvailable(e.target.checked)} />
+        <div className="col-md-6">
+          <div className="input-group">
+            <span className="input-group-text">
+              <svg width="16" height="16" fill="currentColor" className="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
+                <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5m-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z" />
+                <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5z" />
+              </svg>
+            </span>
+            <input type="text"
+              placeholder="Ingresa la descripción de la sala"
+              className='form-control'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="form-check form-switch col-md-5 col-lg-4 d-flex justify-content-center pt-2 px-2">
+          <input className="form-check-input me-2" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked={available} onChange={(e) => setAvailable(e.target.checked)} />
           <label className="form-check-label" htmlFor="flexSwitchCheckChecked">Disponible</label>
         </div>
 
         <div className="d-grid gap-2">
-          <button className='btn btn-danger fw-semibold' type='submit'>
+          <button className='btn btn-dark fw-semibold' type='submit'>
             {isUpdateMode ? 'Actualizar' : 'Crear Sala'}
           </button>
         </div>
       </form>
       <hr />
-      <div className="container-fluid my-5 px-5 overflow-auto">
-        <h2>Rooms</h2>
+      <div className="container-fluid my-4 px-5 overflow-auto">
+        <h2 className="text-center text-warning text-opacity-75 fw-semibold">Rooms</h2>
         <table className="table table-striped table-hover" style={{ minWidth: "780px" }}>
           <thead>
             <tr>
@@ -233,7 +231,7 @@ function Admin({ db }) {
         </table>
 
       </div>
-    </>
+    </main>
   )
 }
 
