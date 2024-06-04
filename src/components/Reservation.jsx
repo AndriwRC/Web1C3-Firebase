@@ -90,7 +90,7 @@ function Reservation({ db, firebaseUser }) {
   }, []);
 
   return (
-    <main className="d-flex justify-content-center flex-wrap my-5 px-xl-5 min-width-100">
+    <main className="d-flex justify-content-center flex-wrap my-5 px-xl-5 min-width-100 mx-auto" style={{ maxWidth: "1440px" }}>
 
       <div className="form-floating col-9">
         <input className="form-control" type="text" id="searchInput" onChange={(e) => setSearchQuery(e.target.value.trim())} />
