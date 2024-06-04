@@ -29,7 +29,7 @@ function App() {
       </header>
 
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home firebaseUser={firebaseUser} />} />
         <Route path='login' element={<Login auth={auth} db={db} />} />
         <Route path='admin' element={<Admin db={db} />} />
         <Route path='reservation' element={<Reservation db={db} firebaseUser={firebaseUser} />} />
