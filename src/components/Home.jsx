@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 function Home({ firebaseUser }) {
   return (
@@ -10,13 +11,13 @@ function Home({ firebaseUser }) {
           <div className="d-flex justify-content-center mt-2">
             {
               firebaseUser
-                ? <button className="btn btn-dark">Reservar</button>
-                : <button className="btn btn-dark">Iniciar Sesión</button>
+                ? <Link to="/reservation" role="button" className="btn btn-dark">Reservar</Link>
+                : <Link to="/login" role="button" className="btn btn-dark">Iniciar Sesión</Link>
             }
           </div>
         </div>
         <div className="d-inline col-sm-5 col-md-4">
-          <img src="https://www.shutterstock.com/image-vector/silhouettes-athletes-different-sports-600nw-2388423531.jpg" className="img-fluid small-image" alt="Imagen de Un Michi" />
+          <img src="https://www.shutterstock.com/image-vector/silhouettes-athletes-different-sports-600nw-2388423531.jpg" className="img-fluid small-image" alt="Imagen de Home" />
         </div>
       </div>
     </main>

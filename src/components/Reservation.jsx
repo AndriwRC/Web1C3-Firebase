@@ -4,7 +4,33 @@ import { useState, useEffect } from "react";
 function Reservation({ db, firebaseUser }) {
   const [rooms, setRooms] = useState([]);
   const [filterOption, setFilterOption] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
 
+  // Filter Rooms
+  function filterRooms() {
+    switch (filterOption) {
+      case 'all':
+        return rooms;
+      case 'available':
+        return rooms.filter(room => room.available);
+      case 'reserved':
+        return rooms.filter(room => room.reservedBy === firebaseUser.email);
+    }
+  }
+
+  function searchRooms() {
+    if (!searchQuery) {
+      return filterRooms();
+    }
+
+    return filterRooms().filter(room =>
+      room.name
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase())
+    );
+  }
+
+  // CRUD
   async function getRooms() {
     try {
       const collection = await db.collection('rooms').get();
@@ -18,7 +44,7 @@ function Reservation({ db, firebaseUser }) {
 
     } catch (error) {
       console.log(error);
-    }
+    } console
   }
 
   async function makeReservation(room) {
@@ -65,7 +91,13 @@ function Reservation({ db, firebaseUser }) {
 
   return (
     <main className="d-flex justify-content-center flex-wrap my-5 px-xl-5 min-width-100">
-      <div className="form-floating w-50">
+
+      <div className="form-floating col-9">
+        <input className="form-control" type="text" id="searchInput" onChange={(e) => setSearchQuery(e.target.value.trim())} />
+        <label htmlFor="searchInput">Buscar Salas</label>
+      </div>
+
+      <div className="form-floating col-6 col-md-4 mt-3">
         <select className="form-select" id="floatingSelect" onChange={(e) => setFilterOption(e.target.value)} defaultValue="all">
           <option value="all">Todas</option>
           <option value="available">Disponibles</option>
@@ -76,44 +108,15 @@ function Reservation({ db, firebaseUser }) {
 
       <div className="d-flex justify-content-center flex-wrap col-10 mt-4 mb-5 px-xl-5" id="cardsContainer" style={{ maxWidth: "1200px" }}>
         {
-          (filterOption === 'all')
-            ? (
-              rooms.map((room, index) => (
-                <RoomCard
-                  key={index}
-                  room={room}
-                  userEmail={firebaseUser.email}
-                  makeReservation={makeReservation}
-                  cancelReservation={cancelReservation} />
-              ))
-            )
-            : (filterOption === 'available')
-              ? (
-                rooms
-                  .filter(room => room.available)
-                  .map((room, index) => (
-                    <RoomCard
-                      key={index}
-                      room={room}
-                      userEmail={firebaseUser.email}
-                      makeReservation={makeReservation}
-                      cancelReservation={cancelReservation} />
-                  ))
-              )
-              : (
-                rooms
-                  .filter(room => room.reservedBy === firebaseUser.email)
-                  .map((room, index) => (
-                    <RoomCard
-                      key={index}
-                      room={room}
-                      userEmail={firebaseUser.email}
-                      makeReservation={makeReservation}
-                      cancelReservation={cancelReservation} />
-                  ))
-              )
-
-
+          searchRooms().map((room, index) => (
+            <RoomCard
+              key={index}
+              room={room}
+              userEmail={firebaseUser.email}
+              makeReservation={makeReservation}
+              cancelReservation={cancelReservation}
+            />
+          ))
         }
       </div>
     </main>
